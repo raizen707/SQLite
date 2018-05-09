@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SQLite"
+             x:Class="SQLite.MainPage">
+
+    <StackLayout Padding="20" BackgroundColor="#FFFFFF">
+       
+        <Label Text="Notas Rápidas:" TextColor="White"></Label>
+        <Entry Placeholder="Titulo" x:Name="Title" ></Entry>
+        <Entry Placeholder="Descripción" x:Name="Description" ></Entry>
+        <Button Text="Agregar Nota" Clicked="OnAdd" BackgroundColor="#2196F3"  HorizontalOptions="FillAndExpand"></Button>
+
+        <ListView VerticalOptions="EndAndExpand" x:Name="mylistview" BackgroundColor="#FFFFFF">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Title}" Detail="{Binding Desc}">
+                        <TextCell.ContextActions>
+                            <MenuItem Text="Delete" CommandParameter="{Binding .}" IsDestructive="True" Clicked="OnDelete"></MenuItem>
+                            <MenuItem Text="Update" CommandParameter="{Binding .}" IsDestructive="True" Clicked="OnUpdate"></MenuItem>
+                        </TextCell.ContextActions>
+                    </TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
